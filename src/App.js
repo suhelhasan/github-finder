@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Axios from "axios";
+import UserCard from "./UserCard";
 
 function App() {
+  const [username, setUserName] = useState("");
+  const [userInfo, setUserInfo] = useState(null);
+
+  let getUser = async () => {
+    try {
+      let { data } = await Axios.get(
+        `https://api.github.com/users/${username}`
+      );
+      const userEmail = await Axios.get(
+        `https://api.github.com/users/${username}/events/public`
+      );
+      let findEmail = userEmail;
+      let userMail =
+        data.email || findEmail.data[0].payload.commits[0].author.email;
+      setUserInfo({ userMail, ...data });
+      setUserName("");
+    } catch {
+      console.log("ERROR");
+      setUserName("");
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello Danish</h1>
+      <input
+        type="text"
+        onChange={(e) => setUserName(e.target.value)}
+        value={username}
+        placeholder="Please provide the username"
+      />
+      <button onClick={getUser}>Get User</button>
+      {userInfo ? <UserCard userInfo={userInfo} /> : null}
     </div>
   );
 }
