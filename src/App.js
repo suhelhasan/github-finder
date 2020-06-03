@@ -19,7 +19,7 @@ function App() {
 
       let arr = userEmail.data;
       let findEmail = "";
-      console.log(arr.length);
+
       for (let i = 0; i < arr.length; i++) {
         if (arr[i].payload.commits) {
           findEmail = arr[i].payload.commits[0].author.email;
