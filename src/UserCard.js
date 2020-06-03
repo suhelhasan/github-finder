@@ -11,9 +11,9 @@ export default function UserCard({ userInfo }) {
         />
         <h3>{userInfo.name}</h3>
         <p>{userInfo.email || userInfo.userMail}</p>
-        <p>{userInfo.location}</p>
-        <p>{userInfo.bio}</p>
-        <p>Hireable: {userInfo.hireable ? "YES" : "NO"}</p>
+        <p>{userInfo.location ? userInfo.location : "NA"}</p>
+        <p>{userInfo.bio ? userInfo.bio : "NA"}</p>
+        <p>Hireable: {userInfo.hireable ? "YES" : "NA"}</p>
         <p>Followers: {userInfo.followers}</p>
       </div>
     </div>

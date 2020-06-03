@@ -9,18 +9,26 @@ function App() {
 
   let getUser = async () => {
     try {
-      let client_ID = "Iv1.ec43b1e5bdafd795";
-      let client_SECRET = "e0ff76deebf70e031547e1247b74e6b3817ad4c2";
-
       let { data } = await Axios.get(
-        `https://api.github.com/users/${username}?client_id=${client_ID}&client_secret=${client_SECRET}`
+        `https://api.github.com/users/${username}`
       );
+
       const userEmail = await Axios.get(
-        `https://api.github.com/users/${username}?client_id=${client_ID}&client_secret=${client_SECRET}/events/public`
+        `https://api.github.com/users/${username}/events/public`
       );
-      let findEmail = userEmail;
-      let userMail =
-        data.email || findEmail.data[0].payload.commits[0].author.email;
+
+      let arr = userEmail.data;
+      let findEmail = "";
+      console.log(arr.length);
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].payload.commits) {
+          findEmail = arr[i].payload.commits[0].author.email;
+          break;
+        }
+      }
+
+      let userMail = data.email || findEmail;
+
       setUserInfo({ userMail, ...data });
       setUserName("");
     } catch {
