@@ -9,11 +9,14 @@ function App() {
 
   let getUser = async () => {
     try {
+      let client_ID = "Iv1.ec43b1e5bdafd795";
+      let client_SECRET = "e0ff76deebf70e031547e1247b74e6b3817ad4c2";
+
       let { data } = await Axios.get(
-        `https://api.github.com/users/${username}`
+        `https://api.github.com/users/${username}?client_id=${client_ID}&client_secret=${client_SECRET}`
       );
       const userEmail = await Axios.get(
-        `https://api.github.com/users/${username}/events/public`
+        `https://api.github.com/users/${username}?client_id=${client_ID}&client_secret=${client_SECRET}/events/public`
       );
       let findEmail = userEmail;
       let userMail =
@@ -28,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello Danish</h1>
+      <h1>Hello Danish..</h1>
       <input
         type="text"
         onChange={(e) => setUserName(e.target.value)}
