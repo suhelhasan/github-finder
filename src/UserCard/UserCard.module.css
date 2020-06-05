@@ -110,12 +110,16 @@ h3 {
   .userProfile {
     text-align: center;
     min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .userDetails {
     margin-top: 10px;
   }
   .imageStyle {
-    width: 100%;
+    width: 70%;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
