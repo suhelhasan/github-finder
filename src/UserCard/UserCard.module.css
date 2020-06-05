@@ -108,6 +108,7 @@ h3 {
   }
   .userProfile {
     text-align: center;
+    height: auto;
     /* min-height: 70vh; */
     display: flex;
     flex-direction: column;
