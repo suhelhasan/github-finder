@@ -57,10 +57,12 @@ function App() {
 
   return (
     <div className="App">
-      <div className="inputSection">
-        <h1>
+      <div className="header">
+        <p>
           GitHub user details finder <FaGithub />
-        </h1>
+        </p>
+      </div>
+      <div className="inputSection">
         <div>
           <input
             type="text"

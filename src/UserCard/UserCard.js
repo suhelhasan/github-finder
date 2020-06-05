@@ -12,6 +12,7 @@ import {
   FaUserGraduate,
   FaUserTie,
   FaEnvelope,
+  FaSmile,
 } from "react-icons/fa";
 
 export default function UserCard({ userInfo }) {
@@ -45,7 +46,16 @@ export default function UserCard({ userInfo }) {
               @{userInfo.login} <FaGithubAlt />
             </h3>
           </a>
-          <h3>{userInfo.bio ? userInfo.bio : "NA"}</h3>
+          <h3>
+            {userInfo.bio ? (
+              userInfo.bio
+            ) : (
+              <h3>
+                Hey, there i am using GitHub
+                <FaSmile />
+              </h3>
+            )}
+          </h3>
         </div>
         <div className={styling.userDetails}>
           <h3>
