@@ -41,45 +41,45 @@ export default function UserCard({ userInfo }) {
             className={styling.imageStyle}
           />
           <a target="_blank" rel="noopener noreferrer" href={userInfo.html_url}>
-            <h3>
+            <h3 className={styling.userName}>
               @{userInfo.login} <FaGithubAlt />
             </h3>
           </a>
-          <p>{userInfo.bio ? userInfo.bio : "NA"}</p>
+          <h3>{userInfo.bio ? userInfo.bio : "NA"}</h3>
         </div>
         <div className={styling.userDetails}>
-          <p>
+          <h3>
             <FaUserTie /> Name: {userInfo.name || "NA"}
-          </p>
-          <p>
+          </h3>
+          <h3>
             <FaEnvelope /> Email: {noEmail ? findEmail : "NA"}
-          </p>
-          <p>
+          </h3>
+          <h3>
             <FaMapMarkerAlt /> Location:{" "}
             {userInfo.location ? userInfo.location : "NA"}
-          </p>
-          <p>
+          </h3>
+          <h3>
             <FaCity /> Works At: {userInfo.company ? userInfo.company : "NA"}
-          </p>
-          <p>
+          </h3>
+          <h3>
             <FaUserGraduate /> Hireable: {userInfo.hireable ? "YES" : "NA"}
-          </p>
-          <p>
+          </h3>
+          <h3>
             {" "}
             <FaGithub /> Public Repos: {userInfo.public_repos}
-          </p>
-          <p>
+          </h3>
+          <h3>
             <FaHistory /> Member Since: {memberSince}
-          </p>
-          <p>
+          </h3>
+          <h3>
             <FaRedoAlt /> Last Visit: {lastVisit}
-          </p>
-          <p>
+          </h3>
+          <h3>
             <FaUserCheck /> Followers: {userInfo.followers}
-          </p>
-          <p>
+          </h3>
+          <h3>
             <FaUserPlus /> Following: {userInfo.following}
-          </p>
+          </h3>
           <div className={styling.buttons}>
             <button>
               <a
