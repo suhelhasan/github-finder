@@ -43,18 +43,12 @@ export default function UserCard({ userInfo }) {
           />
           <a target="_blank" rel="noopener noreferrer" href={userInfo.html_url}>
             <h3 className={styling.userName}>
-              @{userInfo.login} <FaGithubAlt />
+              @{userInfo.login}
+              {/* <FaGithubAlt /> */}
             </h3>
           </a>
           <h3>
-            {userInfo.bio ? (
-              userInfo.bio
-            ) : (
-              <h3>
-                Hey, there i am using GitHub
-                <FaSmile />
-              </h3>
-            )}
+            {userInfo.bio ? userInfo.bio : "Hey, there i am using GitHub"}
           </h3>
         </div>
         <div className={styling.userDetails}>
