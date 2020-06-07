@@ -31,7 +31,7 @@ body {
 .inputSection {
   width: 100%;
   margin-top: 30px;
-  height: 20vh;
+  height: 14vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

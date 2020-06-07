@@ -22,7 +22,7 @@ export default function UserCard({ userInfo }) {
       userInfo.userMail.indexOf("@"),
       userInfo.userMail.length - 1
     ).length < 15;
-  // === "@users.noreply.github.co"
+
   let memberSince = userInfo.created_at.slice(
     0,
     userInfo.created_at.indexOf("T")
@@ -42,12 +42,9 @@ export default function UserCard({ userInfo }) {
             className={styling.imageStyle}
           />
           <a target="_blank" rel="noopener noreferrer" href={userInfo.html_url}>
-            <h3 className={styling.userName}>
-              @{userInfo.login}
-              {/* <FaGithubAlt /> */}
-            </h3>
+            <h3 className={styling.userName}>@{userInfo.login}</h3>
           </a>
-          <h3>
+          <h3 className={styling.bio}>
             {userInfo.bio ? userInfo.bio : "Hey, there i am using GitHub"}
           </h3>
         </div>
