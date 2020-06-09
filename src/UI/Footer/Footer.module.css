@@ -1,0 +1,16 @@
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 4px 0px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #000;
+}
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.footer span {
+  color: red;
+}

@@ -2,28 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Axios from "axios";
 import UserCard from "./UserCard/UserCard";
-import { FaGithub, FaStar, FaCodeBranch } from "react-icons/fa";
-import { GoRepoForked } from "react-icons/go";
+import UserNotFound from "./UI/UserNotFound/UserNotFound";
+import StartPage from "./UI/StartPage/StartPage";
+import Header from "./UI/Header/Header";
+import Footer from "./UI/Footer/Footer";
 
 function App() {
   const [username, setUserName] = useState("");
   const [userInfo, setUserInfo] = useState(null);
-  const [repoDetails, setRepoDetails] = useState({});
-
-  useEffect(() => {
-    Axios.get(`https://api.github.com/users/suhelhasan/repos`).then(
-      (reponse) => {
-        let repo = reponse.data;
-        repo.forEach((element) => {
-          if (element.name === "github-finder") {
-            let forks = element.forks;
-            let stars = element.stargazers_count;
-            setRepoDetails({ forks, stars });
-          }
-        });
-      }
-    );
-  }, []);
+  const [notFound, setNotFound] = useState(false);
 
   let getUser = async () => {
     try {
@@ -48,20 +35,18 @@ function App() {
       let userMail = data.email || findEmail;
 
       setUserInfo({ userMail, ...data });
+      setNotFound(false);
       setUserName("");
     } catch {
-      console.log("ERROR");
+      setUserInfo(null);
+      setNotFound(true);
       setUserName("");
     }
   };
 
   return (
     <div className="App">
-      <div className="header">
-        <p>
-          GitHub user details finder <FaGithub />
-        </p>
-      </div>
+      <Header />
       <div className="inputSection">
         <div>
           <input
@@ -75,16 +60,14 @@ function App() {
         </div>
       </div>
       <div className="usersSection">
-        {userInfo ? <UserCard userInfo={userInfo} /> : null}
+        {userInfo ? (
+          <UserCard userInfo={userInfo} />
+        ) : notFound ? null : (
+          <StartPage />
+        )}
+        {notFound ? <UserNotFound /> : null}
       </div>
-      <div className="footer">
-        <p>
-          <FaStar />
-          {repoDetails.stars}
-          <GoRepoForked />
-          {repoDetails.forks} &nbsp; Github Finder &copy; 2020
-        </p>
-      </div>
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.UserNotFound {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  text-align: center;
+}
+@media screen and (min-width: 850px) {
+  .UserNotFound h2 {
+    font-size: 30px;
+  }
+}

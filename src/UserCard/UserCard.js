@@ -12,10 +12,9 @@ import {
   FaUserGraduate,
   FaUserTie,
   FaEnvelope,
-  FaSmile,
 } from "react-icons/fa";
 
-export default function UserCard({ userInfo }) {
+function UserCard({ userInfo }) {
   let findEmail = userInfo.email || userInfo.userMail || "NA";
   let noEmail =
     userInfo.userMail.slice(
@@ -42,7 +41,9 @@ export default function UserCard({ userInfo }) {
             className={styling.imageStyle}
           />
           <a target="_blank" rel="noopener noreferrer" href={userInfo.html_url}>
-            <h3 className={styling.userName}>@{userInfo.login}</h3>
+            <h3 className={styling.userName}>
+              @{userInfo.login.toLowerCase()}
+            </h3>
           </a>
           <h3 className={styling.bio}>
             {userInfo.bio ? userInfo.bio : "Hey, there i am using GitHub"}
@@ -106,3 +107,4 @@ export default function UserCard({ userInfo }) {
     </div>
   );
 }
+export default UserCard;
