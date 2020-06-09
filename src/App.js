@@ -11,6 +11,22 @@ function App() {
   const [username, setUserName] = useState("");
   const [userInfo, setUserInfo] = useState(null);
   const [notFound, setNotFound] = useState(false);
+  const [repoDetails, setRepoDetails] = useState({});
+
+  useEffect(() => {
+    Axios.get(`https://api.github.com/users/suhelhasan/repos`).then(
+      (reponse) => {
+        let repo = reponse.data;
+        repo.forEach((element) => {
+          if (element.name === "github-finder") {
+            let forks = element.forks;
+            let stars = element.stargazers_count;
+            setRepoDetails({ forks, stars });
+          }
+        });
+      }
+    );
+  }, []);
 
   let getUser = async () => {
     try {
@@ -67,7 +83,7 @@ function App() {
         )}
         {notFound ? <UserNotFound /> : null}
       </div>
-      <Footer />
+      <Footer stars={repoDetails.stars} forks={repoDetails.forks} />
     </div>
   );
 }

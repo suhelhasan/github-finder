@@ -1,35 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaStar } from "react-icons/fa";
 import { GoRepoForked } from "react-icons/go";
 import styling from "./Footer.module.css";
-import Axios from "axios";
 
-export default function Footer() {
-  const [repoDetails, setRepoDetails] = useState({});
-
-  useEffect(() => {
-    Axios.get(`https://api.github.com/users/suhelhasan/repos`).then(
-      (reponse) => {
-        let repo = reponse.data;
-        repo.forEach((element) => {
-          if (element.name === "github-finder") {
-            let forks = element.forks;
-            let stars = element.stargazers_count;
-            setRepoDetails({ forks, stars });
-          }
-        });
-      }
-    );
-  }, []);
-
+function Footer({ stars, forks }) {
   return (
     <div className={styling.footer}>
       <p>
         <a href="https://github.com/suhelhasan/github-finder">
           <FaStar />
-          {repoDetails.stars}
+          {stars}
           <GoRepoForked />
-          {repoDetails.forks}
+          {forks}
         </a>{" "}
         &nbsp; Made with <span>❤</span> by{" "}
         <a href="https://github.com/suhelhasan">@suhelhasan</a>
@@ -37,3 +19,4 @@ export default function Footer() {
     </div>
   );
 }
+export default Footer;
